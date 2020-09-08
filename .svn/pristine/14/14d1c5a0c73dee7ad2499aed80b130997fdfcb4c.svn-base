@@ -1,0 +1,53 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace AXMCMMUtil
+{
+    public class charInfo
+    {
+        public bool used { get; private set; }
+        public int charRow { get; private set; }
+        public string charNo { get; private set; }
+        public string nominal { get; private set; }
+        public string upper { get; private set; }
+        public string lower { get; private set; }
+        public string desc { get; private set; }
+        public List<double> actualList { get; private set; }
+
+        public charInfo(int row, string cNo, string nom, string up, string lo)
+        {
+            used = false;
+            charRow = row;
+            charNo = cNo;
+            nominal = nom;
+            upper = up;
+            lower = lo;
+            actualList = new List<double>();
+            //actualCnt = 0;
+            //actualTotals = 0.0;
+            //actualStdDev = 0.0;
+        }
+
+        public void AddActual(double val)
+        {
+            actualList.Add(val);
+        }
+
+        public void AddDesc(string val)
+        {
+            desc = val;
+        }
+
+        public void MarkUsed()
+        {
+            used = true;
+        }
+
+        public bool IsUsed()
+        {
+            return used;
+        }
+    }
+}

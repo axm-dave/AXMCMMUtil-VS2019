@@ -1,0 +1,126 @@
+﻿using System;
+using System.IO;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Windows.Forms;
+
+using DocumentFormat.OpenXml;
+using DocumentFormat.OpenXml.Spreadsheet;
+using SpreadsheetLight;
+using SpreadsheetLight.Drawing;
+
+namespace AXMCMMUtil
+{
+    public class resultGrid
+    {
+        public DataGridView gridControl { get; private set; }
+        public DataGridViewTextBoxColumn CharNo { get; private set; }
+        public DataGridViewTextBoxColumn Nominal { get; private set; }
+        public DataGridViewTextBoxColumn Upper { get; private set; }
+        public DataGridViewTextBoxColumn Lower { get; private set; }
+        public DataGridViewTextBoxColumn Actual { get; private set; }
+        public DataGridViewTextBoxColumn Deviation { get; private set; }
+        public Label label { get; private set; }
+        public Label fileName { get; private set; }
+        public TabPage tabPage { get; set; }
+        public string runNo { get; private set; }
+
+        public resultGrid(string title, string rNo)
+        {
+            runNo = rNo;
+
+            label = new System.Windows.Forms.Label();
+            label.AutoSize = true;
+            label.Location = new System.Drawing.Point(5, 5);
+            label.Name = "fileNameLabel";
+            label.Size = new System.Drawing.Size(65, 13);
+            label.TabIndex = 0;
+            label.Text = "Results filename: ";
+
+            fileName = new System.Windows.Forms.Label();
+            fileName.AutoSize = true;
+            fileName.Location = new System.Drawing.Point(95, 5);
+            fileName.Name = "fileName";
+            fileName.Size = new System.Drawing.Size(200, 13);
+            fileName.TabIndex = 0;
+            fileName.Text = title;
+
+            gridControl = new System.Windows.Forms.DataGridView();
+            //((System.ComponentModel.ISupportInitialize)(gridControl)).BeginInit();
+            CharNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            Nominal = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            Upper = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            Lower = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            Actual = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            Deviation = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            tabPage = null;
+
+            // 
+            // dataGridView1
+            // 
+            //gridControl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            //| System.Windows.Forms.AnchorStyles.Left)
+            //| System.Windows.Forms.AnchorStyles.Right)));
+            //gridControl.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            gridControl.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+                CharNo, Nominal, Upper, Lower, Actual, Deviation});
+            gridControl.Location = new System.Drawing.Point(0, 30);
+            gridControl.Name = "dataGridView1";
+            gridControl.Size = new System.Drawing.Size(643, 567);
+            //gridControl.Size = new System.Drawing.Size(600, 500);
+            //gridControl.Width = 450;
+            //gridControl.Height = 450;
+            gridControl.TabIndex = 13;
+            gridControl.ScrollBars = ScrollBars.Both;
+            //gridControl.AutoSize = true;
+            // 
+            // CharNo
+            // 
+            //CharNo.Frozen = true;
+            CharNo.HeaderText = "CharNo";
+            CharNo.Name = "CharNo";
+            CharNo.ReadOnly = true;
+            CharNo.Width = 70;
+            // 
+            // Nominal
+            // 
+            //Nominal.Frozen = true;
+            Nominal.HeaderText = "Nominal";
+            Nominal.Name = "Nominal";
+            Nominal.ReadOnly = true;
+            Nominal.Width = 120;
+            // 
+            // Upper
+            // 
+            //Upper.Frozen = true;
+            Upper.HeaderText = "Upper";
+            Upper.Name = "Upper";
+            Upper.ReadOnly = true;
+            Upper.Width = 70;
+            // 
+            // Lower
+            // 
+            //Lower.Frozen = true;
+            Lower.HeaderText = "Lower";
+            Lower.Name = "Lower";
+            Lower.ReadOnly = true;
+            Lower.Width = 70;
+            // 
+            // Actual
+            // 
+            Actual.HeaderText = "Actual";
+            Actual.Name = "Actual";
+            Actual.Width = 70;
+            // 
+            // Deviation
+            // 
+            Deviation.HeaderText = "Deviation";
+            Deviation.Name = "Deviation";
+            Deviation.Width = 70;
+        }
+    }
+}
